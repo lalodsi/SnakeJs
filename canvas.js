@@ -7,6 +7,7 @@ const maxSize = 10;
 var SquareSize = 20;
 var posX = [0, 0, 0], posY = [0, 0, 0];
 var movX = 0, movY = 0;
+var objX = 10, objY = 10;
 var saltos = 20;
 var length = 5;
 //Game
@@ -33,17 +34,23 @@ function game(){
 	if (posY[0] > canvas.height/SquareSize-1){
 		posY[0] = canvas.height/SquareSize-1;
 	}
+	//Objetivo
+	if(posX[0] == objX && posY[0] == objY){
+		length++;
+		objX = Math.floor(Math.random() * SquareSize);
+		objY = Math.floor(Math.random() * SquareSize);
+	}
 	//Fondo
 	pincel.fillStyle = "black";
 	pincel.fillRect(0,0,canvas.width,canvas.height);
+	//Objetivo
+	pincel.fillStyle = "red";
+	pincel.fillRect(objX*saltos,objY*saltos,SquareSize-2,SquareSize-2);
 	//Jugador
 	for (let i = 0; i < posY.length; i++) {
 		pincel.fillStyle = "blue";
 		pincel.fillRect(posX[i]*saltos,posY[i]*saltos,SquareSize-2,SquareSize-2);
 	}
-	// posX.unshift(posX.pop());
-	// posY.unshift(posY.pop());
-	//
 }
 
 function teclaPulsada(evento){
