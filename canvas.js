@@ -1,6 +1,7 @@
 'use strict'
 var canvas = document.getElementById("game");
 var pincel = canvas.getContext("2d");
+var puntuacion = document.getElementsByClassName("puntuacion")[0].getElementsByTagName('h4');
 document.addEventListener("keydown",teclaPulsada);
 //Variables
 const maxSize = 10;
@@ -51,6 +52,8 @@ function game(){
 		pincel.fillStyle = "blue";
 		pincel.fillRect(posX[i]*saltos,posY[i]*saltos,SquareSize-2,SquareSize-2);
 	}
+	//Puntuacion
+	puntuacion[0].innerText = `Puntuacion: ${length - 5}`;
 }
 
 function teclaPulsada(evento){
